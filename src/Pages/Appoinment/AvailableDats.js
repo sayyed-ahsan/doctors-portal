@@ -15,10 +15,11 @@ const AvailableDats = ({ selectedDate, setSelectedDate }) => {
     }, [])
 
     return (
-        <div>
-            <p className='text-center text-3xl text-[#04c7a7] font-bold my-16 pt-'>Available Appoinment on: {format(selectedDate, 'PP')} </p>
+        <div className='bg-[#ecfeff  pb-20'>
+            <p className='text-center text-4xl text-[#04c7a7] font-bold pb-2 pt-20'>Available Appoinment </p>
+            <p className='text-center text-4xl text-black font-bold pb-16'>On: {format(selectedDate, 'PP')} </p>
             <div className='flex justify-center'>
-                <div className='grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mb-10'>
+                <div className='grid gap-10 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mb-10'>
                     {
                         appoinmentOption.map(option =>
                             <AppoinmentOption

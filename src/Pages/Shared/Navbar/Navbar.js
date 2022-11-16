@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../contexts/AuthProvider';
 
 const Navbar = () => {
+    const { handleThemeChange } = useContext(AuthContext);
     const menuItem =
         <React.Fragment>
             <li><Link to="/">Home</Link></li>
@@ -9,6 +11,9 @@ const Navbar = () => {
             <li><Link to="/about">About</Link></li>
             <li><Link to="/reviews">Reviews</Link></li>
             <li><Link to="/login">Login</Link></li>
+            <li><Link to="/signup">Signup</Link></li>
+            <li><button onClick={handleThemeChange}>theme</button></li>
+
         </React.Fragment>
     return (
         <div>
