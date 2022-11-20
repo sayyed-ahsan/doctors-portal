@@ -2,17 +2,29 @@ import { format } from 'date-fns';
 import React, { useEffect, useState } from 'react';
 import AppoinmentOption from './AppoinmentOption';
 import BookingModal from './BookingModal';
+import { useQuery } from '@tanstack/react-query'
 
-const AvailableDats = ({ selectedDate, setSelectedDate }) => {
+const AvailableDats = ({ selectedDate }) => {
 
-    const [appoinmentOption, setAppoinmentOption] = useState([]);
+    // const [appoinmentOption, setAppoinmentOption] = useState([]);
     const [treatment, setTretment] = useState(null);
 
-    useEffect(() => {
-        fetch('appoinmentOptions.json')
-            .then(res => res.json())
-            .then(data => setAppoinmentOption(data))
-    }, [])
+    const { data: appoinmentOption = [] } = useQuery({
+        queryKey: ['appoinmentOption'],
+        queryFn: async () => {
+            const result = await fetch('http://localhost:5000/appoinmentOptions')
+            const data = await result.json();
+            return data
+        }
+    })
+
+    // useEffect(() => {
+    //     fetch('http://localhost:5000/appoinmentOptions')
+    //         .then(res => res.json())
+    //         .then(data => setAppoinmentOption(data))
+    // }, [])
+
+
 
     return (
         <div className='bg-[#ecfeff  pb-20'>

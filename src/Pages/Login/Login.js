@@ -1,16 +1,39 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../contexts/AuthProvider';
 
 const Login = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
     const [data, setData] = useState("");
+    const { googleSignin, user, signIn } = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const handleLogin = (data) => {
-        console.log(data)
-        console.log(errors)
+        signIn(data.email, data.password)
+        getUserToken(data.email);
+
     }
+
+    const googleLogin = () => {
+        googleSignin()
+        navigate('/');
+        getUserToken(user.email);
+    }
+
+    //----------------------------------------
+    const getUserToken = (email) => {
+        fetch(`http://localhost:5000/jwt?email=${email}`)
+            .then(res => res.json())
+            .then(data => {
+                if (data.accessToken) {
+                    localStorage.setItem('accesstoken', data.accessToken);
+                    navigate('/')
+                }
+            })
+    }
+    //----------------------------------------
 
     return (
         <section className='mx-5 '>
@@ -40,7 +63,7 @@ const Login = () => {
                     </form>
                     <p className='text-sm text-center my-2'>New to doctor Portal <Link className='text-sky-400' to='/signup'>Signup</Link></p>
                     <div className="divider">OR</div>
-                    <button className='btn btn-outline w-full'>Google</button>
+                    <button onClick={googleLogin} className='btn btn-outline w-full'>Google</button>
                 </div>
             </div>
         </section>
