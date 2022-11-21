@@ -7,7 +7,7 @@ const ManageDoctors = () => {
         queryKey: ['doctors'],
         queryFn: async () => {
             try {
-                const res = await fetch(`http://localhost:5000/doctors`);
+                const res = await fetch(`https://doctors-portal-server-six-phi.vercel.app/doctors`);
                 const data = await res.json();
                 console.log(data)
                 return data;

@@ -12,14 +12,14 @@ const AvailableDats = ({ selectedDate }) => {
     const { data: appoinmentOption = [] } = useQuery({
         queryKey: ['appoinmentOption'],
         queryFn: async () => {
-            const result = await fetch('http://localhost:5000/appoinmentOptions')
+            const result = await fetch('https://doctors-portal-server-six-phi.vercel.app/appoinmentOptions')
             const data = await result.json();
             return data
         }
     })
 
     // useEffect(() => {
-    //     fetch('http://localhost:5000/appoinmentOptions')
+    //     fetch('https://doctors-portal-server-six-phi.vercel.app/appoinmentOptions')
     //         .then(res => res.json())
     //         .then(data => setAppoinmentOption(data))
     // }, [])

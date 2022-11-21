@@ -22,7 +22,7 @@ const DashBoardLayout = () => {
                     <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
                     <ul className="menu p-4 w-80 bg-base-100 text-base-content">
                         <li><Link to={'/dashboard'}>My Appoinments</Link></li>
-                        {!isAdmin &&
+                        {isAdmin &&
                             <>
                                 <li><Link to={'/dashboard/users'}>All Users</Link></li>
                                 <li><Link to={'/dashboard/managedoctors'}>Manage Doctors</Link></li>

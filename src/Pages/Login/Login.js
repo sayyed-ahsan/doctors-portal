@@ -18,13 +18,19 @@ const Login = () => {
 
     const googleLogin = () => {
         googleSignin()
-        navigate('/');
-        getUserToken(user.email);
+        if (user === "user observing") {
+            console.log(user)
+        }
+        else {
+            getUserToken(user.email);
+            console.log(user)
+
+        }
     }
 
     //----------------------------------------
     const getUserToken = (email) => {
-        fetch(`http://localhost:5000/jwt?email=${email}`)
+        fetch(`https://doctors-portal-server-six-phi.vercel.app/jwt?email=${email}`)
             .then(res => res.json())
             .then(data => {
                 if (data.accessToken) {

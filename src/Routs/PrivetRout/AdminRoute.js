@@ -8,13 +8,13 @@ const AdminRoute = ({ children }) => {
     const [isAdmin, isAdminLoading] = useAdmin(user?.email);
     const location = useLocation();
 
-    console.log(loading, isAdminLoading)
+    console.log(user, isAdmin)
 
     if (loading || isAdminLoading) {
         return <div className='text-5xl'>Loding....</div>
     }
 
-    if (user && isAdmin) {
+    if (user || isAdmin) {
         return children;
     }
 

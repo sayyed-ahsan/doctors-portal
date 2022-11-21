@@ -6,7 +6,7 @@ import { AuthContext } from '../../../contexts/AuthProvider';
 const MYAppoinments = () => {
 
     const { user } = useContext(AuthContext);
-    const url = `http://localhost:5000/bookingss?email=${user?.email}`;
+    const url = `https://doctors-portal-server-six-phi.vercel.app/bookingss?email=${user?.email}`;
 
 
     const { data: bookings = [] } = useQuery({
@@ -41,7 +41,7 @@ const MYAppoinments = () => {
                     <tbody>
 
                         {
-                            bookings?.map((booking, i) =>
+                            bookings?.length && bookings?.map((booking, i) =>
                                 <tr className="hover">
                                     <th>{i + 1}</th>
                                     <td>{booking?.patient}</td>
@@ -49,10 +49,17 @@ const MYAppoinments = () => {
                                     <td>{booking?.appointmentDate}</td>
                                     <td>{booking?.slot}</td>
                                     <td>
-                                        {booking.pric && !booking.paid ?
-                                            <></>
-                                            :
-                                            <><Link to={`/dashboard/payment/${booking._id}`}><button className='btn btn-outline btn-info btn-sm '>pay</button></Link></>
+                                        {
+                                            booking.price && !booking.paid && <Link
+                                                to={`/dashboard/payment/${booking._id}`}
+                                            >
+                                                <button
+                                                    className='btn btn-primary btn-sm'
+                                                >Pay</button>
+                                            </Link>
+                                        }
+                                        {
+                                            booking.price && booking.paid && <span className='text-green-500'>Paid</span>
                                         }
                                     </td>
                                 </tr>

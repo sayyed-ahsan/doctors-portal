@@ -57,7 +57,7 @@ const router = createBrowserRouter(
                 },
                 {
                     path: '/dashboard/users',
-                    element: <AllUsers></AllUsers>
+                    element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
                 },
                 {
                     path: '/dashboard/adddoctor',
@@ -70,7 +70,7 @@ const router = createBrowserRouter(
                 {
                     path: '/dashboard/payment/:bookingId',
                     element: <Payment></Payment>,
-                    loader: ({ params }) => fetch(`http://localhost:5000/bookings/${params.bookingId}`)
+                    loader: ({ params }) => fetch(`https://doctors-portal-server-six-phi.vercel.app/bookings/${params.bookingId}`)
                 }
             ]
         }
