@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from 'react-router-dom';
@@ -18,15 +18,20 @@ const Login = () => {
 
     const googleLogin = () => {
         googleSignin()
+
+    }
+
+
+    useEffect(() => {
         if (user === "user observing") {
             console.log(user)
         }
         else {
-            getUserToken(user.email);
+            getUserToken(user?.email);
             console.log(user)
 
         }
-    }
+    }, [user])
 
     //----------------------------------------
     const getUserToken = (email) => {

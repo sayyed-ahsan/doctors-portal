@@ -3,7 +3,7 @@ import { RouterProvider } from 'react-router-dom';
 import router from './Routs/Routs/Routs';
 import { useContext } from 'react';
 import { AuthContext } from './contexts/AuthProvider';
-import toast, { Toaster } from 'react-hot-toast';
+import { Toaster } from 'react-hot-toast';
 //------
 import {
   QueryClient,
